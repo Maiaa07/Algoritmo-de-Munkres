@@ -176,3 +176,45 @@ filas_cubiertas = []
 funcion_global()
 print( matriz,lista_asteriscos)
 
+
+
+import numpy as np
+import time
+
+
+# Función para medir el tiempo promedio
+def medir_tiempos():
+    global matriz, columnas_cubiertas, lista_asteriscos, lista_apostrofes, filas_cubiertas
+    tiempos = []
+    
+    for _ in range(1000):
+        # Generamos una nueva matriz
+        matriz = np.random.randint(0, 101, size=(10, 10)).tolist()
+        columnas_cubiertas = []
+        lista_asteriscos = []
+        lista_apostrofes = []
+        filas_cubiertas = []
+
+        
+        # Empezamos el cronómetro
+        inicio = time.time()
+        
+        # Ejecutamos la función global
+        funcion_global()
+        
+        # Calculamos el tiempo que tardó en ejecutarse
+        fin = time.time()
+        
+        # Guardamos el tiempo
+        tiempos.append(fin - inicio)
+    
+    # Calculamos el tiempo promedio
+    tiempo_promedio = np.mean(tiempos)
+    
+    return tiempo_promedio
+
+# Llamamos a la función para medir el tiempo promedio
+tiempo_promedio = medir_tiempos()
+
+# Mostramos el resultado
+print(f"El tiempo medio en resolver las asignaciones es: {tiempo_promedio:.6f} segundos.")
